@@ -406,11 +406,31 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
     - The collision box ignores the ball's circular shape for simplicity,
       which is sufficient for this game.
     """
-    # TODO: put your code!!!!
-    hit = False
+   hit = False
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
+    # ball limits (using radius)
+    b_left = x - radius
+    b_right = x + radius
+    b_top = y - radius
+    b_bot = y + radius
+
+    # paddle box limits
+    p_right = paddle_x + paddle_w
+    p_bot = paddle_y + paddle_h
+
+    # AABB overlap check
+    if (b_right > paddle_x and b_left < p_right and 
+        b_bot > paddle_y and b_top < p_bot):
+        
+        hit = True
+        vx = -vx  # reverse speed
+
+        # shift ball position to prevent getting stuck inside paddle
+        if vx > 0:
+            x = p_right + radius
+        else:
+            x = paddle_x - radius
+
     return x, y, vx, vy, hit
 
 def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool) -> tuple[int, int, int, int]:
@@ -644,5 +664,3 @@ def main() -> None:
 # and not when it is imported from another file.
 if __name__ == "__main__":
     main()
-
-# Prova de connexio Guillem
