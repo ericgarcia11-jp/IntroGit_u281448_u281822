@@ -644,3 +644,5 @@ def main() -> None:
 # and not when it is imported from another file.
 if __name__ == "__main__":
     main()
+
+# Prova de connexio Guillem
