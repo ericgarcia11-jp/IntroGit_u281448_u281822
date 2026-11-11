@@ -106,19 +106,19 @@ def get_config() -> tuple[int, int, int, int, int]:
     - Remember to maintain the same order of the returned elements.
     """
 
+
     # Only open the configuration menu if the user wants to.
+    if ask_yes_no("Do you want to open the game settings?"):
+        paddle_height = read_int_in_range("Paddle height", 60, 160)
+        paddle_speed = read_int_in_range("Paddle speed", 1, 20)
+        ball_x_speed = read_int_in_range("Ball X speed", 1, 15)
+        ball_y_speed = read_int_in_range("Ball Y speed", 0, 14)
+        ball_radius = read_int_in_range("Ball radius", 1, 15)
+        return paddle_height, paddle_speed, ball_x_speed, ball_y_speed, ball_radius
+    else:
+        # User answered "no": keep the default values
+        return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS
 
- if ask_yes_no("Do you want to open the game settings?"):
-    paddlee_height = read_int_in_range("Paddle height: ", 60, 160)
-    paddle_speed = read_int_in_range("Paddle speed: ", 1, 20)
-    ball_x_speed = read_int_in_range("Ball's x speed: ", 1, 15)
-    ball_y_speed = read_int_in_range("Ball's y speed: ", 0, 14)
-    ball_radius = read_int_in_range("Ball radious: ", 1, 15)
-
-    
-else:
-    # Answer "no" keep the default values
-    return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS 
 
 def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
     """ Ask the user if they want to modify the game colors (background and foreground).
@@ -352,7 +352,7 @@ def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int
         # Bouncing in the lower wall
     elif y + radius > height:
         y = height - radius 
-        -vy = vy 
+        vy = -vy 
 
     return x, y, vx, vy
 
