@@ -106,11 +106,18 @@ def get_config() -> tuple[int, int, int, int, int]:
     - Remember to maintain the same order of the returned elements.
     """
 
-    # TODO: put your code!!!!
+    # Only open the configuration menu if the user wants to.
 
-    # This line of code has been left for letting the full program work
-    # It corresponds to the user answering NO to changing any default values 
-    # You will need to eliminate it when adding your code
+ if ask_yes_no("Do you want to open the game settings?"):
+    paddlee_height = read_int_in_range("Paddle height: ", 60, 160)
+    paddle_speed = read_int_in_range("Paddle speed: ", 1, 20)
+    ball_x_speed = read_int_in_range("Ball's x speed: ", 1, 15)
+    ball_y_speed = read_int_in_range("Ball's y speed: ", 0, 14)
+    ball_radius = read_int_in_range("Ball radious: ", 1, 15)
+
+    
+else:
+    # Answer "no" keep the default values
     return PADDLE_H, SPEED_PADDLE, SPEED_BALL_X, SPEED_BALL_Y, BALL_RADIUS 
 
 def change_colors() -> tuple[tuple[int, int, int], tuple[int, int, int]]:
@@ -338,9 +345,15 @@ def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int
         For precisely detecting collisions, you might need to consider the ball radius
     """
     # TODO: put your code!!!!
+        # Bouncing in the upper wall. y is the center, that's why sometimes sums and others substract.
+    if y - radius < 0:
+        y = radius 
+        vy = - vy
+        # Bouncing in the lower wall
+    elif y + radius > height:
+        y = height - radius 
+        -vy = vy 
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
     return x, y, vx, vy
 
 
