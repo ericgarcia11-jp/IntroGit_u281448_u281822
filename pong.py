@@ -67,7 +67,7 @@ KEY_UP_RIGHT = pygame.K_UP          # arrow UP
 KEY_DOWN_RIGHT = pygame.K_DOWN      # arrow DOWN
 
 # Play against machine (optional feature): set to True once compute_ai_direction() is implemented
-PLAY_AGAINST_MACHINE = False
+PLAY_AGAINST_MACHINE = True
 
 # ==============================================================================
 # Functions to complete by the students : configuration/setup before game starts
@@ -515,13 +515,14 @@ def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
     """
     # Center of the AI's paddle
     paddle_center = paddle_y + paddle_h / 2
+
     # Mrgin of tolerance permited in pixels. (So the paddle doesn't vibrate)
     tolerance = 10
 
     # Movement of the paddle
     if ball_y < paddle_center - tolerance:
         return -1   # Move the paddle up
-    elif ball_ > paddle_center + tolerance:
+    elif ball_y > paddle_center + tolerance:
         return 1 # Move the paddle down
     else:
         return 0
