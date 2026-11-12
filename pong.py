@@ -344,7 +344,7 @@ def collide_ball_walls(x: int, y: int, vx: int, vy: int, radius: int, width: int
         When hitting a horizontal wall, change the sign of vy
         For precisely detecting collisions, you might need to consider the ball radius
     """
-    # TODO: put your code!!!!
+    
         # Bouncing in the upper wall. y is the center, that's why sometimes sums and others substract.
     if y - radius < 0:
         y = radius 
@@ -406,7 +406,7 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
     - The collision box ignores the ball's circular shape for simplicity,
       which is sufficient for this game.
     """
-   hit = False
+    hit = False
 
     # ball limits (using radius)
     b_left = x - radius
@@ -432,6 +432,8 @@ def collide_ball_paddle(x: int, y: int, vx: int, vy: int, paddle_x: int, paddle_
             x = paddle_x - radius
 
     return x, y, vx, vy, hit
+
+
 
 def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool) -> tuple[int, int, int, int]:
     """ Reset the ball to the center of the screen and return its initial position and velocity after a point has been scored.
@@ -466,12 +468,19 @@ def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool)
     - The horizontal velocity must point in the correct direction depending on `to_right`.
     - Optionally, randomize the vertical velocity slightly (e.g., sign or magnitude) for variability.
     """
+    # Horizontal direction of the Ball
 
-    # TODO: put your code!!!!
+    if to_right:
+        vx = vx0
+    else:
+        vx = -vx0
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate/modify it when adding your code
-    return center_x, center_y, vx0, vy0
+    # Random vertical direction
+    if random.randint(0, 1) == 0:
+        vy = vy0
+    else:
+        vy = -vy0
+
 
 
 
