@@ -481,7 +481,7 @@ def reset_ball(center_x: int, center_y: int, vx0: int, vy0: int, to_right: bool)
     else:
         vy = -vy0
 
-
+    return center_x, center_y, vx, vy
 
 
 def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
