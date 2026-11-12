@@ -513,11 +513,18 @@ def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
     You might want to use a small tolerance margin so the paddle doesn't “vibrate” 
     when the ball is aligned enough.
     """
-    # TODO: put your code!!!!
+    # Center of the AI's paddle
+    paddle_center = paddle_y + paddle_h
+    # Mrgin of tolerance permited in pixels. (So the paddle doesn't vibrate)
+    tolerance = 10
 
-    # This line of code has been left for letting the full program work
-    # You will need to eliminate it when adding your code
-    return 0
+    # Movement of the paddle
+    if ball_y < paddle_center + tolerance:
+        return -1   # Move the paddle up
+    if ball_ > paddle_center + tolerance:
+        return 1 # Move the paddle down
+    else:
+        return 0
 
 # =============================================
 # Checking KEYS UP/DOWN (given to the students)
