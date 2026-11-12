@@ -514,14 +514,14 @@ def compute_ai_direction(ball_y: int, paddle_y: int, paddle_h: int) -> int:
     when the ball is aligned enough.
     """
     # Center of the AI's paddle
-    paddle_center = paddle_y + paddle_h
+    paddle_center = paddle_y + paddle_h / 2
     # Mrgin of tolerance permited in pixels. (So the paddle doesn't vibrate)
     tolerance = 10
 
     # Movement of the paddle
-    if ball_y < paddle_center + tolerance:
+    if ball_y < paddle_center - tolerance:
         return -1   # Move the paddle up
-    if ball_ > paddle_center + tolerance:
+    elif ball_ > paddle_center + tolerance:
         return 1 # Move the paddle down
     else:
         return 0
